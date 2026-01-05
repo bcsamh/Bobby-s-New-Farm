@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bobby's Wine Bar & Brunch</title>
+    <!-- Added Favicon -->
+    <link rel="icon" href="bobbys_b.webp" type="image/webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -61,6 +63,12 @@
             margin-top: 15px;
             height: 70px;
             filter: brightness(0) invert(1);
+            /* Ensure image transition matches link transition if needed */
+            transition: opacity 0.3s;
+        }
+
+        .logo a:hover img {
+            opacity: 0.8;
         }
 
         nav ul {
@@ -109,6 +117,9 @@
             color: white;
             max-width: 800px;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hero h1 {
@@ -118,7 +129,16 @@
             font-weight: 900;
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.5); /* Added shadow for readability */
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+        }
+
+        .hero-logo {
+            max-width: 400px;
+            width: 80%;
+            height: auto;
+            margin-bottom: 2rem;
+            /* White filter + drop shadow for contrast against background */
+            filter: brightness(0) invert(1) drop-shadow(2px 2px 10px rgba(0,0,0,0.5));
         }
 
         .hero p {
@@ -126,7 +146,7 @@
             font-weight: 300;
             margin-bottom: 2rem;
             letter-spacing: 1px;
-            text-shadow: 1px 1px 10px rgba(0,0,0,0.5); /* Added shadow for readability */
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
         }
 
         .btn {
@@ -152,6 +172,36 @@
              background-color: transparent;
              color: white;
              border-color: white;
+        }
+
+        /* Animated Chevron */
+        .scroll-down {
+            color: white;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            animation: bounce 2.5s infinite; /* Slowed down slightly */
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .scroll-down:hover {
+            opacity: 1;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-6px); /* Reduced movement */
+            }
+            60% {
+                transform: translateX(-50%) translateY(-3px); /* Reduced movement */
+            }
         }
 
         /* --- INFO BAR (HOURS & LOCATION) --- */
@@ -192,10 +242,10 @@
             letter-spacing: 1.5px;
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
-            text-align: left; /* Changed to left align */
+            text-align: left;
             display: flex;
             align-items: center;
-            gap: 12px; /* Space between icon and text */
+            gap: 12px;
         }
 
         .info-card-icon {
@@ -212,17 +262,17 @@
             margin-bottom: 0.8rem;
             font-size: 1.1rem;
             font-weight: 400;
-            text-align: left; /* Changed to left align to match title */
+            text-align: left;
         }
         
         /* New Styles for Hours Grid */
         .hours-container {
             width: 100%;
-            padding: 0 5px; /* Reduced padding slightly for alignment */
-            flex-grow: 1; /* Allow it to grow to fill space */
+            padding: 0 5px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center the rows vertically */
+            justify-content: center;
         }
 
         .hours-row {
@@ -379,6 +429,7 @@
             }
 
             .hero h1 { font-size: 2.5rem; line-height: 1.2; }
+            .hero-logo { max-width: 280px; }
             .hero p { font-size: 1.2rem; }
             
             .info-bar {
@@ -406,7 +457,7 @@
 
             .menu-text-col {
                 text-align: center;
-                order: 2; /* Puts text below image on mobile */
+                order: 2;
             }
 
             .menu-image-col {
@@ -424,7 +475,10 @@
     <!-- Header -->
     <header>
         <div class="logo">
-            <img src="bobbys_logo.webp" alt="Bobby's Wine Bar Logo">
+            <!-- Made Logo Clickable -->
+            <a href="#">
+                <img src="bobbys_b.webp" alt="Bobby's Wine Bar Logo">
+            </a>
         </div>
         <nav>
             <ul>
@@ -438,10 +492,15 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>BOBBY'S</h1>
-            <p>Wine Bar & Brunch</p>
-            <a href="#menu" class="btn">View Full Menu</a>
+            <img src="bobbys_logo.webp" alt="Bobby's Wine Bar Logo" class="hero-logo">
         </div>
+        <!-- Moved Chevron outside hero-content to position at bottom -->
+        <a href="#info" class="scroll-down" aria-label="Scroll down to info">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Single Chevron Path -->
+                <path d="M6 9l6 6 6-6"/>
+            </svg>
+        </a>
     </section>
 
     <!-- Info Section (Location & Hours separated) -->
